@@ -26,18 +26,27 @@ public class Deck {
         Collections.shuffle(cards);
         System.out.println("Se mezcló el Deck.");
     }
-    public void head() {
+    public void head() throws Exception {
+        if (cards.isEmpty()) {
+            throw new Exception("Se han agotado las cartas");
+        }
         Card card = cards.removeFirst();
         System.out.println(card);
         System.out.println("Quedan " + cards.size() + " cartas en deck");
     }
-    public void pick() {
+    public void pick() throws Exception {
+        if (cards.isEmpty()) {
+            throw new Exception("Se han agotado las cartas");
+        }
         int index = (int) (Math.random() * cards.size());
         Card card = cards.remove(index);
         System.out.println(card);
         System.out.println("Quedan " + cards.size() + " cartas en deck");
     }
-    public List<Card> hand() {
+    public List<Card> hand() throws Exception {
+        if (cards.size() < 5) {
+            throw new Exception("Se han agotado las cartas");
+        }
         List<Card> hand = new ArrayList<>();
         System.out.println("Se repartieron las siguientes cartas:");
         for (int i = 0; i < 5; i++) {
